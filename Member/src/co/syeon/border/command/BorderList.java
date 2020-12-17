@@ -20,12 +20,8 @@ public class BorderList implements BorderCommand {
 			throws IOException, ServletException {
 
 		BorderDao dao = new BorderDao();
-		ArrayList<BorderVO> blist = dao.selectAll();
+		ArrayList<BorderVO> blist = null;//dao.selectAll();
 		request.setAttribute("list", blist);
-		Paging paging = new Paging();
-		paging.setTotalCount(100);
-		request.setAttribute("params", paging);
-		System.out.println(paging);
 
 		return "jsp/border/borderList.jsp";
 	}
