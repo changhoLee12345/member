@@ -1,0 +1,68 @@
+String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String password = "hr";
+
+
+
+
+
+
+private String driver = "oracle.jdbc.driver.OracleDriver";
+	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String user = "syeon";
+	private String password = "1234";
+
+
+
+
+
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class ConnectDB {
+	public static Connection getCon() {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "syeon";
+		String password = "1234";
+		Connection conn = null; // 연결객체
+
+		try {
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, user, password);
+			System.out.println("연결성공");
+		} catch (Exception e) {
+			System.out.println("DB연결 실패!");
+		}
+		return conn;
+	}
+}
+
+
+
+
+
+
+
+
+try { 
+//1. JDBC 드라이버 로딩 
+Class.forName(driver); 
+// 2. Connection 생성 
+con = DriverManager.getConnection(url, user, pw); //데이터베이스 연결 System.out.println("[Database 연결 성공]"); 
+} catch (SQLException e) { 
+System.out.println("[SQL Error : " + e.getMessage() +"]"); 
+} catch (ClassNotFoundException e1) { System.out.println("[JDBC Connector Driver Error : " + e1.getMessage() + "]"); 
+} finally { 
+//Connection 사용 후 Close 
+if(con != null) { 
+try { 
+con.close(); 
+} catch (Exception e) 
+{ 
+}
+

@@ -1,0 +1,73 @@
+package co.syeon.member.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import co.syeon.member.vo.MemberVO;
+
+public class MemberDAO {
+
+	private String driver = "oracle.jdbc.driver.OracleDriver";
+	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String user = "syeon";
+	private String password = "1234";
+
+	private Connection conn;
+	private PreparedStatement psmt;
+	private ResultSet rs;
+
+	public MemberDAO() {
+		try {
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, user, password);
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println("DB연결 실패");
+		}
+	}
+
+	private void close() {
+		try {
+			if (rs != null)
+				rs.close();
+			if (psmt != null)
+				psmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 전체데이터
+	public ArrayList<MemberVO> selectAll() {
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+
+		return list;
+	}
+
+	// 검색
+	public MemberVO select(MemberVO vo) {
+		return vo;
+	}
+
+	public MemberVO memberLoginCheck(MemberVO vo) {
+		return vo;
+	}
+	
+	public MemberVO insert(MemberVO vo) {
+		return vo;
+	}
+	
+	public MemberVO update(MemberVO vo) {
+		return vo;
+	}
+	
+	public MemberVO delete(MemberVO vo) {
+		return vo;
+	}
+	
+} // end of dao
