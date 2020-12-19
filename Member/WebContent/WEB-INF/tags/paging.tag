@@ -1,10 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="js/paging.js"></script>
 <div>${params }</div>
-<script>
-	function goPage(page) {
-		console.log(page);
-	}
-</script>
 <div class="paginate">
     <a href="javascript:goPage(${params.firstPageNo})" class="first">first page</a>
     <a href="javascript:goPage(${params.prevPageNo})" class="prev">prev page</a>

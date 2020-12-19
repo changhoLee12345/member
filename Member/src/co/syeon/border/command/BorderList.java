@@ -20,7 +20,7 @@ public class BorderList implements BorderCommand {
 			throws IOException, ServletException {
 
 		BorderDao dao = new BorderDao();
-		ArrayList<BorderVO> blist = null;//dao.selectAll();
+		ArrayList<BorderVO> blist = dao.searchAll();// dao.selectAll();
 		request.setAttribute("list", blist);
 
 		return "jsp/border/borderList.jsp";

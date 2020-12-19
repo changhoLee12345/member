@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.syeon.border.command.BorderList;
+import co.syeon.border.dao.BorderDao;
 import co.syeon.common.BorderCommand;
 import co.syeon.common.Paging;
 
@@ -35,7 +36,7 @@ public class BorderListController extends HttpServlet {
 		BorderCommand command = new BorderList(); // 선언!!! command들을 List에 담아 실행명령 선언.
 
 		Paging paging = new Paging();
-		paging.setTotalCount(100);
+		paging.setTotalCount(BorderDao.searchCnt());
 		request.setAttribute("params", paging);
 		System.out.println(paging);
 

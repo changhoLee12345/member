@@ -1,5 +1,6 @@
 package co.syeon.border.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +34,31 @@ public class BorderDao extends DAO {
 	private final String hit_update = "UPDATE border SET borderhit = borderhit + 1 WHERE borderid = ?";
 	private final String update = "UPDATE border SET bordercontent=? WHERE borderid = ?";
 	private final String dalete = "DELETE FROM border WHERE borderid=?";
-	
+
+	private static final int dataCnt = 57;
+
+	public static int searchCnt() {
+
+		return dataCnt;
+	}
+
+	public ArrayList<BorderVO> searchAll() {
+		ArrayList<BorderVO> list = new ArrayList<>();
+
+		for (int i = 0; i < dataCnt; i++) {
+			BorderVO vo = new BorderVO();
+			vo.setBorderContent("borderContent" + i);
+			vo.setBorderDate(new Date(2020, 10, 10));
+			vo.setBorderHit(i);
+			vo.setBorderId(i + 1);
+			vo.setBorderTitle("borderTitle" + i);
+			vo.setBorderWrite("borderWrite" + i);
+			
+			list.add(vo);
+		}
+
+		return list;
+	}
 
 	// 전체 데이터 가져오기.
 	public ArrayList<BorderVO> selectAll() {
@@ -181,14 +206,14 @@ public class BorderDao extends DAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// 글목록 갯수
 	public ArrayList<BorderVO> getBoardList(HashMap<String, Object> listOpt) {
 		ArrayList<BorderVO> list = new ArrayList<BorderVO>();
-		
-		String opt = (String)listOpt.get("opt");	// 검색옵션(제목,내용,글쓴이 등)
-		String condition = (String)listOpt.get("condition");	// 검색내용
-		int start = (Integer)listOpt.get("start");	// 현재 페이지 번호
+
+		String opt = (String) listOpt.get("opt"); // 검색옵션(제목,내용,글쓴이 등)
+		String condition = (String) listOpt.get("condition"); // 검색내용
+		int start = (Integer) listOpt.get("start"); // 현재 페이지 번호
 		return null;
 	}
 }
