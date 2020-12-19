@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import co.syeon.border.vo.BorderVO;
 import co.syeon.common.DAO;
@@ -42,18 +43,31 @@ public class BorderDao extends DAO {
 		return dataCnt;
 	}
 
-	public ArrayList<BorderVO> searchAll() {
+	public ArrayList<BorderVO> searchAll(Map<String, String> searchMap) {
+
+		String pageNum = searchMap.get("page");
+		String searchKey = searchMap.get("keyword");
+		String searchCond = searchMap.get("condition");
+		System.out.println(pageNum + ", " + searchKey + ", " + searchCond);
+
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int pNum = Integer.parseInt(pageNum);
+		int startCnt = pNum * 10 - 9;
+		int endCnt = pNum * 10;
+
 		ArrayList<BorderVO> list = new ArrayList<>();
 
-		for (int i = 0; i < dataCnt; i++) {
+		for (int i = startCnt; i <= endCnt; i++) {
 			BorderVO vo = new BorderVO();
 			vo.setBorderContent("borderContent" + i);
 			vo.setBorderDate(new Date(2020, 10, 10));
 			vo.setBorderHit(i);
-			vo.setBorderId(i + 1);
+			vo.setBorderId(i);
 			vo.setBorderTitle("borderTitle" + i);
 			vo.setBorderWrite("borderWrite" + i);
-			
+
 			list.add(vo);
 		}
 

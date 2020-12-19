@@ -33,12 +33,30 @@ public class BorderListController extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 
+		String pageNum = request.getParameter("pageNum");
+		String keyword = request.getParameter("keyword");
+		String condition = request.getParameter("condition");
+
 		BorderCommand command = new BorderList(); // 선언!!! command들을 List에 담아 실행명령 선언.
 
 		Paging paging = new Paging();
+		paging.setPageSize(10);
 		paging.setTotalCount(BorderDao.searchCnt());
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int prevPage = currentPage == 1 ? 1 : currentPage - 1;
+		int nextPage = currentPage == paging.getEndPageNo() ? currentPage : currentPage + 1;
+		paging.setPageNo(currentPage);
+		paging.setPrevPageNo(prevPage);
+		paging.setNextPageNo(nextPage);
+
 		request.setAttribute("params", paging);
-		System.out.println(paging);
+
+		request.setAttribute("searchPage", pageNum);
+		request.setAttribute("searchKeyword", keyword);
+		request.setAttribute("searchCondition", condition);
 
 		String viewPage = command.action(request, response); // 호출!!! 실행명령 호출. //viewpage에 BorderList()의 return값
 																// "jsp/border/borderList.jsp";

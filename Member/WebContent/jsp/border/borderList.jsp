@@ -38,6 +38,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<my:paging></my:paging>
 		<br />
 		<button type="button" onclick="location.href='jsp/border/borderInput.jsp'">글쓰기</button><br><br>
 		<div align="center">
@@ -52,7 +53,6 @@
 			</form>
 		</div>
 		
-		<my:paging></my:paging>
 	</div>
 </body>
 

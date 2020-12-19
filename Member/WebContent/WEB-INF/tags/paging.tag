@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="js/paging.js"></script>
-<div>${params }</div>
+<!-- <div>${params }</div> -->
 <div class="paginate">
     <a href="javascript:goPage(${params.firstPageNo})" class="first">first page</a>
     <a href="javascript:goPage(${params.prevPageNo})" class="prev">prev page</a>
@@ -15,3 +15,8 @@
     <a href="javascript:goPage(${params.nextPageNo})" class="next">next page</a>
     <a href="javascript:goPage(${params.finalPageNo})" class="last">last page</a>
 </div>
+<script>
+	function goPage(page) {
+		location.href = "/Member/BorderList.do?pageNum=" + page;
+	}
+</script>
