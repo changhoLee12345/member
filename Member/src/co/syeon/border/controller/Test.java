@@ -1,11 +1,19 @@
 package co.syeon.border.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+
+import co.syeon.border.dao.TestDAO;
+import co.syeon.border.vo.BorderVO;
 
 /**
  * Servlet implementation class Test
@@ -30,11 +38,12 @@ public class Test extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String v1 = request.getParameter("p1");
-		String v2 = request.getParameter("p2");
-		String v3 = request.getParameter("p3");
+		TestDAO dao = new TestDAO();
+		List<BorderVO> list = dao.getBorderList();
 
-		System.out.println("v1: " + v1 + ", v2: " + v2 + ", v3: " + v3);
+		PrintWriter out = response.getWriter();
+
+		out.print(net.sf.json.JSONArray.fromObject(list));
 	}
 
 	/**
